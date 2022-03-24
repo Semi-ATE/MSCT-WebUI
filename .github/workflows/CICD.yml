@@ -3,7 +3,7 @@ name: CI-CD
 on:
   push:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   ci_job:
@@ -53,7 +53,7 @@ jobs:
   cd_job:
     needs: ci_job
     runs-on: ubuntu-latest
-    if: ${{ github.event.release.name != '' }}
+    if: ${{ github.event.release.tag_name != '' }}
    
     steps:
       - name: Get artifacts from build job
