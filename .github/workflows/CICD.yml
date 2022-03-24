@@ -63,15 +63,22 @@ jobs:
           path: |
             dist
 
+      - name: Get Version from Tag
+        id: get_version_from_tag
+        run: |
+          echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
       - name: Zip distributions
         run: |
           cd dist
-          zip -r ../msct-webui-${GITHUB_REF#refs/*/}.zip msct-webui
-          zip -r ../tcc-dashboard-${GITHUB_REF#refs/*/}.zip tcc-dashboard
+          zip -r ../msct-webui-${{ steps.get_version_from_tag.outputs.VERSION }}.zip msct-webui
+          zip -r ../tcc-dashboard-${{ steps.get_version_from_tag.outputs.VERSION }}.zip tcc-dashboard
+          cd ..
+          ls -al
       
       - name: Add msct-webui and tcc-dashboard to Release Assets
         uses: alexellis/upload-assets@0.3.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          asset_paths: '["msct-webui-${GITHUB_REF#refs/*/}.zip", "tcc-dashboard-${GITHUB_REF#refs/*/}.zip"]'
+          asset_paths: '["msct-webui-${{ steps.get_version_from_tag.outputs.VERSION }}.zip", "tcc-dashboard-${{ steps.get_version_from_tag.outputs.VERSION }}.zip"]'
