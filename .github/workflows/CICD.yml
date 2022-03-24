@@ -62,10 +62,16 @@ jobs:
           name: distribution
           path: |
             dist
+
+      - name: Zip distributions
+        run: |
+          cd dist
+          zip -r ../msct-webui-${GITHUB_REF#refs/*/}.zip msct-webui
+          zip -r ../tcc-dashboard-${GITHUB_REF#refs/*/}.zip tcc-dashboard
       
       - name: Add msct-webui and tcc-dashboard to Release Assets
         uses: alexellis/upload-assets@0.3.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          asset_paths: '["dist/msct-webui/*", "dist/tcc-dashboard/*"]'
+          asset_paths: '["msct-webui-${GITHUB_REF#refs/*/}.zip", "tcc-dashboard-${GITHUB_REF#refs/*/}.zip"]'
