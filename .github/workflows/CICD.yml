@@ -74,7 +74,6 @@ jobs:
           zip -r ../msct-webui-${{ steps.get_version_from_tag.outputs.VERSION }}.zip msct-webui
           zip -r ../tcc-dashboard-${{ steps.get_version_from_tag.outputs.VERSION }}.zip tcc-dashboard
           cd ..
-          ls -al
       
       - name: Add msct-webui and tcc-dashboard to Release Assets
         uses: alexellis/upload-assets@0.3.0
