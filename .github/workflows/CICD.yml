@@ -46,9 +46,9 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: msct-webui
+          name: distribution
           path: |
-            dist/msct-webui
+            dist
 
   cd_job:
     needs: ci_job
@@ -59,11 +59,11 @@ jobs:
       - name: Get artifacts from build job
         uses: actions/download-artifact@v3
         with:
-          name: msct-webui
+          name: distribution
           path: |
-            dist/msct-webui
+            dist
       
-      - name: Add distribution to Release Assets
+      - name: Add msct-webui and tcc-dashboard to Release Assets
         uses: alexellis/upload-assets@0.3.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
