@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div class="navigationContainer">
+    <nav>
+        <ul>
+            <li>
+                <a [class.active]="isActive(menuItem.Info)" routerLink="{{menuItem.Info}}">Information</a>
+                <a class="space">Information</a>
+            </li>
+            <li>
+                <a [class.active]="isActive(menuItem.Logging)" routerLink="{{menuItem.Logging}}">Logging</a>
+                <a class="space">Logging</a>
+            </li>
+        </ul>
+    </nav>
+</div>

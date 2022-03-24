@@ -1,0 +1,36 @@
+@import './../../../../styles/styles.scss';
+
+main {
+  height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 10px);
+  overflow: hidden;
+}
+
+.websocketError {
+  position: absolute;
+  z-index: 10000;
+  top: 148px;
+  font-weight: bold;
+  font-size: 20px;
+  left: 45%;
+  animation-name: blinkingText;
+  animation-iteration-count: infinite;
+  animation-duration: 1.2s;
+}
+
+@keyframes blinkingText {
+  0% {
+    color: $red;
+  }
+  49% {
+    color: $red;
+  }
+  60% {
+    color: transparent;
+  }
+  99% {
+    color: transparent;
+  }
+  100% {
+    color: $red;
+  }
+}

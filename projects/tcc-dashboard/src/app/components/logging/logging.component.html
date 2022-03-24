@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<hr class="blueDivider">
+<div class="logData">
+    <lib-card [cardConfiguration]="logDataCardConfiguration">
+        <div class="logDataContent">
+            <div class="leftContent">
+                <app-tcc-lot-handling></app-tcc-lot-handling>
+            </div>
+            <div class="tableElement">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Date and Time</th>
+                            <th>Source</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let entry of logData">
+                            <td class="type">{{ entry.type }}</td>
+                            <td class="time">{{ entry.time }}</td>
+                            <td class="source">{{ entry.source }}</td>
+                            <td class="info">{{ entry.info }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </lib-card>
+</div>

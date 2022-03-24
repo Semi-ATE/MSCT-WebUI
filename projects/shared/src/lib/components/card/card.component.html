@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<div [class.cardShadow]="cardConfiguration.shadow" class="card {{cardConfiguration.cardStyle}}">
+    <div class="header">
+        <h2>{{cardConfiguration.labelText}}</h2>
+    </div>
+    <div class="body">
+        <ng-content></ng-content>
+    </div>
+</div>

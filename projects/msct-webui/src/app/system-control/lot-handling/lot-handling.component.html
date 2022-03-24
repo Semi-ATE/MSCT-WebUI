@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div id="lotHandling">
+    <lib-card [cardConfiguration]="lotCardConfiguration">
+        <div class="lotInput">
+            <lib-input [inputConfig]="lotNumberInputConfig" (carriageReturnEvent)= "loadLot()"></lib-input>
+        </div>
+        <div class="unloadLotBtn">
+            <lib-button [buttonConfig]="unloadLotButtonConfig" (buttonClickEvent)="unloadLot()"></lib-button>
+        </div>
+    </lib-card>
+</div>
+

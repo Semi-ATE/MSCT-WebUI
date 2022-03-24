@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="testNumberFilter">
+    <lib-checkbox
+        id="testNumberCheckbox"
+        [checkboxConfig]="testNumberCheckboxConfig"
+        (checkboxChangeEvent)="filterChanged()"></lib-checkbox>
+    <lib-input
+        id="testNumberInput"
+        [inputConfig]="testNumberInputConfig"
+        (inputChangeEvent)="filterChanged()"
+        (carriageReturnEvent)="filterChanged()"></lib-input>
+</div>

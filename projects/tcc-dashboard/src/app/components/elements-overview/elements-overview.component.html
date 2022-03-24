@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<hr class="blueDivider">
+<div class="testCellComponents">
+    <lib-card [cardConfiguration]="testCellsCardConfiguration">
+        <p *ngIf="elementStates.length === 0; else elements">No active test cell component.</p>
+    </lib-card>
+    <ng-template #elements>
+        <div *ngFor="let state of elementStates">
+            <app-element-state [elementState]="state"></app-element-state>
+        </div>
+    </ng-template>
+</div>

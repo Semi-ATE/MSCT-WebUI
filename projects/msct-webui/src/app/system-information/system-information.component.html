@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<div *ngIf="showError()">
+    <div class="error">
+        <h3>{{status.reason}}</h3>
+    </div>
+</div>
+<hr class="blueDivider">
+<div id="reduceSpace">
+    <lib-card [cardConfiguration]="informationCardConfiguration">
+        <div *ngIf="isInConnectingState(); else systemStateIsNotConnecting">
+            <lib-card [cardConfiguration]="identifyCardConfiguration">  
+                <div class="warn">
+                    <strong>Identifying Test System!</strong>
+                </div>
+            </lib-card>
+        </div>
+    </lib-card>
+</div>
+
+<ng-template #systemStateIsNotConnecting>
+    <div class="systemInformationAndYield">
+        <div class="systemInformation">
+            <lib-card [cardConfiguration]="infoContentCardConfiguration">
+                <lib-information [informationConfig]="systemInformationConfiguration"></lib-information>
+                <lib-information [informationConfig]="numberOfSitesConfiguration"></lib-information>
+                <lib-information [informationConfig]="timeInformationConfiguration"></lib-information>
+                <lib-information [informationConfig]="environmentInformationConfiguration"></lib-information>
+                <lib-information [informationConfig]="handlerInformationConfiguration"></lib-information>
+                <lib-information [informationConfig]="lotNumberInformationConfiguration"></lib-information>
+            </lib-card>
+        </div>
+        <app-yield></app-yield>
+        <app-lot-data></app-lot-data>
+    </div>
+</ng-template>

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<div>
+    <button type="button"
+        (click)="onClickButton()" 
+        [attr.disabled]="buttonConfig.disabled ? '' : null"
+        [style.color]="buttonConfig.textColor"
+        [style.background-color]="buttonConfig.backgroundColor">
+        {{buttonConfig.labelText}}
+    </button>
+</div>

@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<lib-card [cardConfiguration]="captionCardConfiguration">
+    <lib-card class="mockdataCard" [cardConfiguration]="mockdataCardConfiguration">
+        <lib-dropdown
+            [dropdownConfig]="mockdataDropdownConfig"
+            (dropdownChangeEvent)="sendMockMessage($event)">
+        </lib-dropdown>
+    </lib-card>
+</lib-card>

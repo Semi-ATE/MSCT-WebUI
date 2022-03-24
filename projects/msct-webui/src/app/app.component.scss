@@ -1,0 +1,22 @@
+@import './../../../../styles/styles.scss';
+
+main {
+    .pageContent {
+        height: calc(100vh - #{$headerHeight} - #{$footerHeight} - 10px);
+        overflow: auto;
+    }
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 850px) {
+    .right {
+        display: flex;
+        flex-direction: column;
+        float: left;
+    }
+}

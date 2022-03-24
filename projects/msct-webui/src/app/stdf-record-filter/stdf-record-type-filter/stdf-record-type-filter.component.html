@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<div class="stdfTypeFilter">
+    <div class="multipleChoice">
+        <ul>
+            <li class="listLabel">STDF Record Types</li>
+            <li class="stdfTypes" *ngFor="let c of recordTypeFilterCheckboxes">
+                <div class="stdfRecordTypes">
+                    <lib-checkbox [checkboxConfig]="c" (checkboxChangeEvent)="recordTypeFilterChanged($event, c.labelText)"></lib-checkbox>
+                </div>
+            </li>
+        </ul>
+        <ul class="buttonsForSelect">
+            <lib-button id="allSelected" [buttonConfig]="allRecordsSelectedButtonConfig" (buttonClickEvent)="selectAllRecords()"></lib-button>
+            <lib-button id="noneSelected" [buttonConfig]="noneRecordsSelectedButtonConfig" (buttonClickEvent)="unselectAllRecords()"></lib-button>
+        </ul>
+    </div>
+</div>

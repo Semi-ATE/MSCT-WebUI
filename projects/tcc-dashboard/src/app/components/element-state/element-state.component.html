@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<div class="testcellComponent">
+    <lib-card [cardConfiguration]="testcellCardConfiguration">
+        <div *ngIf="elementState">
+            <lib-information [informationConfig]="elementStateConfiguration" [ngClass]="getColor()">
+                <div class="stateIcon">
+                    <span id="colorSpan" [ngClass]="getColor()"></span>
+                </div>
+            </lib-information>
+        </div>
+        <div class="notice"> 
+            <lib-information [informationConfig]="testcellNoticeConfiguration">
+            </lib-information>
+            <div class="notification" *ngIf="shouldDisplayNotification()">
+                <span class="badge tooltip">
+                    <div>{{this.displayRemainingNoticesCount()}}</div>
+                    <div class="tooltipText">
+                        <ul>
+                            <li *ngFor="let notice of getRemainingNotices()">{{notice.message}}</li>
+                        </ul>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </lib-card>
+</div>

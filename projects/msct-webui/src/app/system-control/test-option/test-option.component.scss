@@ -1,0 +1,30 @@
+#testOptions {
+  width: 350px;
+}
+
+.optionInput {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  align-items: center;
+  & lib-input {
+    width: 26%;
+  }
+  & lib-checkbox {
+    width: 74%;
+  }
+}
+
+.optionButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+.applyButton {
+  width: 50%;
+  margin-right: 10px;
+}
+
+.resetButtons {
+  width: 50%;
+}
