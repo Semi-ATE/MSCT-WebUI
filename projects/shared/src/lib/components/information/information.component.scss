@@ -1,0 +1,24 @@
+@import './../../../../../../styles/styles.scss';
+
+.information {
+  .displayInRow, p{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  h3, p {
+    margin-top: 10px;
+    font-size: $text;
+  }
+  input {
+    width: 20px;
+    background-color: #0046AD;
+    color: white;
+    font-size: 10px;
+    padding: 1px;
+  } 
+  h3 {
+    color: $micronasBlue;
+  }
+}
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<lib-header [title]="appTitle">
+    <app-menu></app-menu>
+    <div class="right">
+        <lib-button [style.display]="isStartDutTestButtonInvisible() ? 'none' : 'block'" [buttonConfig]="startDutTestButtonConfig" (buttonClickEvent)="startDutTest()"></lib-button>
+        <lib-button [style.display]="isResetButtonInvisible() ? 'none' : 'block'" [buttonConfig]="resetButtonConfig" (buttonClickEvent)="resetSystem()"></lib-button>
+        <app-system-status></app-system-status>
+    </div>
+</lib-header>
+<main>
+    <div class="pageContent">
+        <router-outlet></router-outlet>
+        <app-debug *ngIf="backendMocked"></app-debug>
+    </div>
+</main>
+<app-modal-dialog></app-modal-dialog>
+<lib-footer>
+    <div *ngFor="let site of (status$ | async).sites; let idx = index">
+        <app-site-bin-information [siteNumber]="idx" [siteName]="site" [styleForFooter]="true"></app-site-bin-information>
+    </div>
+</lib-footer>

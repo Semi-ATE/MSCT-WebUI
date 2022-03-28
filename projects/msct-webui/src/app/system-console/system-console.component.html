@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<hr class="blueDivider">
+<lib-card id="control" [cardConfiguration]="systemConsoleCardConfiguration">
+    <div class="systemConsole">
+        <div class="leftContent">
+            <lib-button class="leftButtons" [buttonConfig]="clearConsoleButtonConfig" (buttonClickEvent)="clearConsole()"></lib-button>
+            <lib-button class="leftButtons" [buttonConfig]="reloadLogsButtonConfig" (buttonClickEvent)="reloadLogs()"></lib-button>
+            <lib-button class="leftButtons" [buttonConfig]="getLogFileButtonConfig" (buttonClickEvent)="getLogFile()"></lib-button>
+            <lib-multichoice class="leftButtons" [multichoiceConfig]="setLogLevelFilterConfig" (multichoiceChangeEvent)="setLogLevelFilter()"></lib-multichoice>
+            <div class="leftButtons">
+                <label class="sourceFilterLabel">Source Filter</label>
+                <lib-input class="sourceFilter"
+                    [inputConfig]="sourceFilterInputConfig"
+                    (keyPressed)="sourceFilterChanged()"></lib-input>
+            </div>
+        </div>
+        <div class="main">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="time">Date and Time</th>
+                        <th class="type">Type</th>
+                        <th class="source">Source</th>
+                        <th class="info">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let entry of filteredEntries">
+                        <td class="time">{{ entry.date }}</td>
+                        <td class="type">{{ entry.type }}</td>
+                        <td class="source">{{ entry.source }}</td>
+                        <td class="info">{{ entry.description }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</lib-card>

@@ -1,0 +1,125 @@
+@import './../../../../../../styles/styles.scss';
+
+.testcellComponent {
+  min-width: 220px;
+  width: 12.5%;
+  float: left;
+  padding: 5px;
+  .stateIcon {
+    margin-right: 5px;
+  }
+}
+
+#colorSpan{
+  @include solidBorder(1px, beige);
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  float: left;
+}
+
+.green {
+  background-color: green;
+  color: green;
+}
+
+.yellow {
+  background-color: #FFBC58;
+  color: #FFBC58;
+}
+
+.red {
+  background-color: red;
+  color: red;
+}
+
+.notification {
+  position: relative;
+  right: 15px;
+  top: 8px;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -4em;
+  padding: 1px 5px 0px 5px;
+  border-radius: 40%;
+  background-color: #FFBC58;
+  color: black;
+  font-size: 9px;
+  margin-left: 8px;
+  text-align: right;
+}
+
+.tooltip {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tooltip .tooltipText {
+  visibility: hidden;
+  min-width: inherit;
+  height: auto;
+  background-color: $micronasBlue;
+  color: white;
+  text-align: center;
+  position: absolute;
+  z-index: 10;
+  white-space: nowrap;
+  top: 0.5em;
+  right: 1.65em;
+}
+
+.tooltip:hover .tooltipText {
+  visibility: visible;
+  -webkit-animation: fadein 1s;
+  animation: fadein 1s;
+}
+
+@-webkit-keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.tooltipText li {
+  display: block;
+  border-bottom: 1px solid $beige;
+  font-size: 11px;
+  padding: 2px 5px;
+}
+
+@media only screen and (max-width: 550px){
+  .testcellComponent {
+    width: 100%;
+  }
+
+  .notification {
+    right: 0px;
+  }
+
+  .notification .badge {
+    right: -15px;
+  }
+}
+
+@media only screen and (min-width: 551px){
+  .testcellComponent {
+    width: auto;
+  }
+
+  .notification {
+    right: 0px;
+  }
+
+  .notification .badge {
+    right: -15px;
+  }
+}
+

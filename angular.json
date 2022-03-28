@@ -1,0 +1,295 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "tcc-dashboard": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/tcc-dashboard",
+      "sourceRoot": "projects/tcc-dashboard/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/tcc-dashboard",
+            "index": "projects/tcc-dashboard/src/index.html",
+            "main": "projects/tcc-dashboard/src/main.ts",
+            "polyfills": "projects/tcc-dashboard/src/polyfills.ts",
+            "tsConfig": "projects/tcc-dashboard/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/tcc-dashboard/src/favicon.ico",
+              "projects/tcc-dashboard/src/assets"
+            ],
+            "styles": [
+              "projects/tcc-dashboard/src/styles.scss",
+              "styles/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/tcc-dashboard/src/environments/environment.ts",
+                  "with": "projects/tcc-dashboard/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tcc-dashboard:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tcc-dashboard:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tcc-dashboard:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/tcc-dashboard/src/test.ts",
+            "polyfills": "projects/tcc-dashboard/src/polyfills.ts",
+            "tsConfig": "projects/tcc-dashboard/tsconfig.spec.json",
+            "karmaConfig": "projects/tcc-dashboard/karma.conf.js",
+            "assets": [
+              "projects/tcc-dashboard/src/favicon.ico",
+              "projects/tcc-dashboard/src/assets"
+            ],
+            "styles": [
+              "projects/tcc-dashboard/src/styles.scss"
+            ],
+            "scripts": [],
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/tcc-dashboard/src/**/*.ts",
+              "projects/tcc-dashboard/src/**/*.html"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/tcc-dashboard/e2e/protractor.conf.js",
+            "devServerTarget": "tcc-dashboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tcc-dashboard:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "msct-webui": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/msct-webui",
+      "sourceRoot": "projects/msct-webui/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "sprintf-js",
+              "file-saver"
+            ],
+            "outputPath": "dist/msct-webui",
+            "index": "projects/msct-webui/src/index.html",
+            "main": "projects/msct-webui/src/main.ts",
+            "polyfills": "projects/msct-webui/src/polyfills.ts",
+            "tsConfig": "projects/msct-webui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/msct-webui/src/favicon.ico",
+              "projects/msct-webui/src/assets"
+            ],
+            "styles": [
+              "projects/msct-webui/src/styles.scss",
+              "styles/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/msct-webui/src/environments/environment.ts",
+                  "with": "projects/msct-webui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "msct-webui:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "msct-webui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "msct-webui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/msct-webui/src/test.ts",
+            "polyfills": "projects/msct-webui/src/polyfills.ts",
+            "tsConfig": "projects/msct-webui/tsconfig.spec.json",
+            "karmaConfig": "projects/msct-webui/karma.conf.js",
+            "assets": [
+              "projects/msct-webui/src/favicon.ico",
+              "projects/msct-webui/src/assets"
+            ],
+            "styles": [
+              "projects/msct-webui/src/styles.scss"
+            ],
+            "scripts": [],
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "projects/msct-webui/src/app/debug/**/*.ts"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/msct-webui/src/**/*.ts",
+              "projects/msct-webui/src/**/*.html"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/msct-webui/e2e/protractor.conf.js",
+            "devServerTarget": "msct-webui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "msct-webui:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "shared": {
+      "projectType": "library",
+      "root": "projects/shared",
+      "sourceRoot": "projects/shared/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/shared/tsconfig.lib.json",
+            "project": "projects/shared/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shared/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/shared/src/test.ts",
+            "tsConfig": "projects/shared/tsconfig.spec.json",
+            "karmaConfig": "projects/shared/karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": ["projects/shared/src/lib/test-stuff/**/*.ts"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/shared/src/**/*.ts",
+              "projects/shared/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "tcc-dashboard"
+}

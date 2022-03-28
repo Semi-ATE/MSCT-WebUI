@@ -1,0 +1,83 @@
+name: CI-CD
+
+on:
+  push:
+  release:
+    types: [published]
+
+jobs:
+  ci_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Pull Requests
+        uses: actions/checkout@v2
+
+      - name: Setup node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+          cache: npm
+
+      - name: Install test dependencies
+        run: |
+          npm i -g npm@7.16.0
+          npm i -g @angular/cli@12.2.16
+          npm ci
+
+      - name: Lint
+        run: |
+          ng lint shared
+          ng lint msct-webui
+          ng lint tcc-dashboard
+
+      - name: Build
+        run: |
+          ng build shared
+          ng build msct-webui
+          ng build tcc-dashboard
+
+      - name: Test
+        run: |
+          ng test shared --code-coverage --watch false --progress false --browsers ChromeCi
+          ng test msct-webui --code-coverage --watch false --progress false --browsers ChromeCi
+          ng test --code-coverage --watch false --progress false --browsers ChromeCi tcc-dashboard
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: distribution
+          path: |
+            dist
+
+  cd_job:
+    needs: ci_job
+    runs-on: ubuntu-latest
+    if: ${{ github.event.release.tag_name != '' }}
+   
+    steps:
+      - name: Get artifacts from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: distribution
+          path: |
+            dist
+
+      - name: Get Version from Tag
+        id: get_version_from_tag
+        run: |
+          echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Zip distributions
+        run: |
+          cd dist
+          zip -r ../msct-webui-${{ steps.get_version_from_tag.outputs.VERSION }}.zip msct-webui
+          zip -r ../tcc-dashboard-${{ steps.get_version_from_tag.outputs.VERSION }}.zip tcc-dashboard
+          cd ..
+      
+      - name: Add msct-webui and tcc-dashboard to Release Assets
+        uses: alexellis/upload-assets@0.3.0
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          asset_paths: '["msct-webui-${{ steps.get_version_from_tag.outputs.VERSION }}.zip", "tcc-dashboard-${{ steps.get_version_from_tag.outputs.VERSION }}.zip"]'

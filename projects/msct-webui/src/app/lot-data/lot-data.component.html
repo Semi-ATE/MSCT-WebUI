@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<div class="lotData">
+    <lib-card [cardConfiguration]="lotDataCardConfiguration">
+        <div *ngIf="showLotData(); else noLotData">
+            <div class="tabElement">
+                <lib-tab [tabConfig]="lotDataTabConfiguration" (tabChangeEvent)="tabChanged()"></lib-tab>
+            </div>
+            <div class="tableElement">
+                <lib-table [tableConfig]="lotDataTableConfiguration"></lib-table>
+            </div>
+        </div>
+        <ng-template #noLotData>
+            <p>No lot data avaliable</p>
+        </ng-template>
+    </lib-card>
+</div>

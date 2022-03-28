@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<div id="testOptions">
+    <lib-card [cardConfiguration]="testOptionCardConfiguration">
+        <lib-checkbox [checkboxConfig]="stopOnFailOption.checkboxConfig" (checkboxChangeEvent)="optionChanged($event, stopOnFailOption)"></lib-checkbox>
+        <lib-checkbox [checkboxConfig]="singleStepOption.checkboxConfig" (checkboxChangeEvent)="optionChanged($event, singleStepOption)"></lib-checkbox>
+        <div class="optionInput">
+            <lib-checkbox [checkboxConfig]="stopAtTestNumberOption.checkboxConfig" (checkboxChangeEvent)="optionChanged($event, stopAtTestNumberOption)"></lib-checkbox>
+            <lib-input [inputConfig]="stopAtTestNumberOption.inputConfig" (inputChangeEvent)="stopAtTestNumberOption.toBeAppliedValue.value = $event"></lib-input>
+        </div>
+        <div class="optionInput">
+            <lib-checkbox [checkboxConfig]="triggerForTestNumberOption.checkboxConfig" (checkboxChangeEvent)="optionChanged($event, triggerForTestNumberOption)"></lib-checkbox>
+            <lib-input [inputConfig]="triggerForTestNumberOption.inputConfig" (inputChangeEvent)="triggerForTestNumberOption.toBeAppliedValue.value = $event"></lib-input>
+        </div>
+        <lib-checkbox [checkboxConfig]="triggerOnFailureOption.checkboxConfig" (checkboxChangeEvent)="optionChanged($event, triggerOnFailureOption)"></lib-checkbox>
+        <lib-checkbox [checkboxConfig]="triggerSiteSpecificOption.checkboxConfig" (checkboxChangeEvent)="optionChanged($event, triggerSiteSpecificOption)"></lib-checkbox>
+        <div class="optionButtons">
+            <div class="applyButton">
+                <lib-button [buttonConfig]="applyTestOptionButtonConfig" (buttonClickEvent)="sendOptionsToServer()"></lib-button>
+            </div>
+            <div class="resetButtons">
+                <lib-button [buttonConfig]="resetOptionButtonConfig" (buttonClickEvent)="resetTestOptions()"></lib-button>
+            </div>
+        </div>
+    </lib-card>
+</div>
+
+
+
+

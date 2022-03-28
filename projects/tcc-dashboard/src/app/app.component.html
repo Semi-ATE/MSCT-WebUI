@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<lib-header [title]="title">
+    <app-dashboard-menu></app-dashboard-menu>
+    <div class="websocketError" *ngIf="websocketError$ | async">
+        {{connectionError}}
+    </div>
+</lib-header>
+<main>
+    <router-outlet></router-outlet>
+</main>
+<lib-footer></lib-footer>

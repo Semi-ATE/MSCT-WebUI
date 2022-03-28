@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="testTextFilter">
+    <lib-checkbox
+        id="testTextCheckbox"
+        [checkboxConfig]="testTextCheckboxConfig"
+        (checkboxChangeEvent)="filterChanged()"></lib-checkbox>
+    <lib-input
+        id="testTextInput"
+        [inputConfig]="testTextInputConfig"
+        (inputChangeEvent)="filterChanged()"
+        (carriageReturnEvent)="filterChanged()"></lib-input>
+</div>

@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<div id="systemHandling">
+    <lib-card [cardConfiguration]="logLevelCardConfiguration">
+        <div class="systemInput">
+            <lib-dropdown [dropdownConfig]="setLogLevelDropdownConfig" (dropdownChangeEvent)="setLogLevel()"></lib-dropdown>
+        </div>
+    </lib-card>
+</div>
+
