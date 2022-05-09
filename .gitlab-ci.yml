@@ -33,6 +33,7 @@ lint:
     - docker
 
 build:
+  stage: build
   needs: ["setup"]
   script:
     - ng build shared
