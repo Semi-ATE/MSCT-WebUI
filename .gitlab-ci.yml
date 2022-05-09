@@ -43,8 +43,8 @@ build:
     - docker
 
 test:
-  stage: lint
-  needs: ["setup"]
+  stage: test
+  needs: ["build"]
   script:
     - ng test shared --watch false --progress false --code-coverage true --browsers ChromeCi
     - ng test msct-webui --watch false --progress false --code-coverage true --browsers ChromeCi
