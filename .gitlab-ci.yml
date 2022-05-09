@@ -1,145 +1,53 @@
-image: node:14-buster-slim
+image: awinia/node14-npm7-angular12-chrome:latest
 
 variables:
   ErrorActionPreference: stop
 
+cache:
+  paths:
+    - node_modules
+  policy: pull
+
 stages:
+  - setup
   - lint
-  - build-shared
   - build
   - test
 
 setup:
-  stage: prepare-environment
+  stage: setup
   cache:
-    paths:
-      - node_modules/
     policy: push
   script:
     - npm ci
   tags:
     - docker
 
-lint_shared:
+lint:
+  needs: ["setup"]
   stage: lint
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
   script:
     - ng lint shared
-  tags:
-    - docker
-
-lint_tcc-dashboard:
-  stage: lint
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  script:
     - ng lint tcc-dashboard
-  tags:
-    - docker
-
-lint_msct-webui:
-  stage: lint
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  script:
     - ng lint msct-webui
   tags:
     - docker
 
-build_shared:
-  stage: build-shared
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  artifacts:
-    expire_in: '30 mins'
-    paths:
-      - ./dist
+build:
+  needs: ["setup"]
   script:
     - ng build shared
-  tags:
-    - docker
-
-build_tcc-dashboard:
-  stage: build
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  dependencies:
-    - build_shared
-  artifacts:
-    expire_in: '30 mins'
-    paths:
-      - ./dist
-  script:
+    - ng build msct-webui
     - ng build tcc-dashboard
   tags:
     - docker
 
-build_msct-webui:
-  stage: build
-  dependencies:
-    - build_shared  
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  artifacts:
-    expire_in: '30 mins'
-    paths:
-      - ./dist
+test:
+  stage: lint
+  needs: ["setup"]
   script:
-    - ng build msct-webui
-  tags:
-    - docker
-
-test_shared:
-  stage: test
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  script:
-    - ng test shared --code-coverage --watch false --progress false --browsers ChromeCi
-  artifacts:
-    paths:
-      - coverage/shared
-  tags:
-    - docker
-
-test_tcc-dashboard:
-  stage: test
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  script:
-    - ng test tcc-dashboard --code-coverage --watch false --progress false --browsers ChromeCi
-  artifacts:
-    paths:
-      - coverage/tcc-dashboard
-  tags:
-    - docker
-
-test_msct-webui:
-  stage: test
-  cache:
-    paths:
-      - node_modules/
-    policy: pull
-  script:
-    - ng test msct-webui --code-coverage --watch false --progress false --browsers ChromeCi
-  artifacts:
-    paths:
-      - coverage/msct-webui
+    - ng test shared --watch false --progress false --code-coverage true --browsers ChromeCi
+    - ng test msct-webui --watch false --progress false --code-coverage true --browsers ChromeCi
+    - ng test tcc-dashboard --watch false --progress false --code-coverage true --browsers ChromeCi
   tags:
     - docker
