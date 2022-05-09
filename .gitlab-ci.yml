@@ -6,7 +6,8 @@ variables:
 cache:
   paths:
     - node_modules
-  policy: pull
+    - dist
+  policy: push-pull
 
 stages:
   - setup
@@ -16,8 +17,6 @@ stages:
 
 setup:
   stage: setup
-  cache:
-    policy: push
   script:
     - npm ci
   tags:
