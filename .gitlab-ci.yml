@@ -7,7 +7,7 @@ cache:
   paths:
     - node_modules
     - dist
-  policy: push-pull
+  policy: pull-push
 
 stages:
   - setup
