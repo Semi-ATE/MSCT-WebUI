@@ -28,7 +28,7 @@
     "@angular/router": "~12.2.16",
     "@ngrx/store": "^12.5.1",
     "@ngx-pwa/local-storage": "^12.1.0",
-    "express": "^4.17.1",
+    "express": "^4.21.2",
     "file-saver": "^2.0.5",
     "karma-viewport": "^1.0.8",
     "rxjs": "~6.6.0",
