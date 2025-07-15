@@ -11,18 +11,18 @@ jobs:
 
     steps:
       - name: Checkout Pull Requests
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup node 14
-        uses: actions/setup-node@v2
+      - name: Setup node 22
+        uses: actions/setup-node@v4
         with:
-          node-version: 14.x
+          node-version: 22.x
           cache: npm
 
       - name: Install test dependencies
         run: |
-          npm i -g npm@7.16.0
-          npm i -g @angular/cli@12.2.16
+          npm i -g npm@11.4.2
+          npm i -g @angular/cli@20.1.0
           npm ci
 
       - name: Lint
@@ -44,7 +44,7 @@ jobs:
           ng test --code-coverage --watch false --progress false --browsers ChromeCi tcc-dashboard
 
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: distribution
           path: |
@@ -57,7 +57,7 @@ jobs:
    
     steps:
       - name: Get artifacts from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: distribution
           path: |
@@ -76,7 +76,7 @@ jobs:
           cd ..
       
       - name: Add msct-webui and tcc-dashboard to Release Assets
-        uses: alexellis/upload-assets@0.3.0
+        uses: alexellis/upload-assets@0.4.1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
